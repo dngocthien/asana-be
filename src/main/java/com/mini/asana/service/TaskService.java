@@ -12,4 +12,6 @@ import java.util.List;
 public interface TaskService {
     public Boolean saveTask(TaskDto dto);
     public List<TaskDto> getAllTasks();
+
+    public Boolean updateTask(Long id, TaskDto dto);
 }

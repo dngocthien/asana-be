@@ -15,5 +15,5 @@ public class TaskDto {
     private String assignee;
     private String description;
     private Date due;
-    private List<Group> groupList = new ArrayList<>();
+    private List<Long> groupIdList = new ArrayList<>();
 }

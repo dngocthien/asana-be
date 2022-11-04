@@ -1,14 +1,14 @@
 package com.mini.asana.dto;
 
-import com.mini.asana.entity.Group;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class ProjectDto {
+public class GroupDto {
     private Long id;
     private String name;
-    private List<GroupDto> groupList = new ArrayList<>();;
+    private Long projectId;
+    private List<TaskDto> taskList = new ArrayList<>();
 }

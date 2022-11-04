@@ -1,11 +1,12 @@
 package com.mini.asana.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table
@@ -19,6 +20,15 @@ public class Task {
     private String description;
     private Date due;
 
-    @ManyToMany
-    private List<Group> groupList = new ArrayList<>();
+//    @Cascade({
+//            org.hibernate.annotations.CascadeType.SAVE_UPDATE,
+//            org.hibernate.annotations.CascadeType.MERGE,
+//            org.hibernate.annotations.CascadeType.PERSIST
+//    })
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "group_task",
+            joinColumns = @JoinColumn(name = "group_id"),
+            inverseJoinColumns = @JoinColumn(name = "task_id"))
+    private Collection<Group> groups = new ArrayList<>();
 }

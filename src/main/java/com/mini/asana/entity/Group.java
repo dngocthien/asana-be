@@ -1,10 +1,11 @@
 package com.mini.asana.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 @Entity
 @Table(name = "groupp")
@@ -19,6 +20,11 @@ public class Group {
     @JoinColumn(name = "project_id")
     private Project project;
 
-    @ManyToMany
-    private List<Task> taskList = new ArrayList<>();
+    @Cascade({
+            org.hibernate.annotations.CascadeType.SAVE_UPDATE,
+            org.hibernate.annotations.CascadeType.MERGE,
+            org.hibernate.annotations.CascadeType.PERSIST
+    })
+    @ManyToMany(mappedBy = "groups", fetch = FetchType.LAZY)
+    private Collection<Task> tasks = new ArrayList<>();
 }

@@ -24,4 +24,9 @@ public class TaskController {
     public ResponseEntity<Boolean> saveTask(@RequestBody TaskDto dto){
         return ResponseEntity.ok().body(taskService.saveTask(dto));
     }
+
+    @PutMapping("/tasks/{id}")
+    public ResponseEntity<Boolean> updateTask(@PathVariable Long id, @RequestBody TaskDto dto){
+        return ResponseEntity.ok().body(taskService.updateTask(id, dto));
+    }
 }
